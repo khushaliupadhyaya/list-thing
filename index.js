@@ -29,11 +29,12 @@ const app = {
             name: f.flickName.value,
         }
 
-
-        this.flicks.push(flick)
+        //add to the beginning of the array
+        this.flicks.unshift(flick)
 
         const item = this.renderListItem(flick)
-        this.list.appendChild(item)
+        this.list.insertBefore(item, this.list.firstChild)
+        // this.list.appendChild(item)
 
         f.reset()
     },
