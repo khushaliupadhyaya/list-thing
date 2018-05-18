@@ -20,11 +20,29 @@ const app = {
         item
             .querySelector('.flickName')
             .textContent = flick.name
+        item.querySelector('.alert').addEventListener('click', ev => {
+            ev.preventDefault()
+            this.delete(ev)
+        })
+        item.querySelector('.warning').addEventListener('click', ev => {
+            ev.preventDefault()
+            this.favbutton(ev)
+        })
+        
         return item
     },
 
     //does the same thing as the ev => above
     //.addEventListener('submit', this.handleSubmit.bind(this))
+    delete(ev){
+        const t = ev.target.closest('.flick')
+        t.remove()
+        
+    },
+    favbutton(ev){
+        const f = ev.target.closest('.flick')
+        f.style.background = 'red'
+    },
 
     handleSubmit(ev) {
         const f = ev.target
