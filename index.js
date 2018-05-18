@@ -41,7 +41,7 @@ const app = {
     },
     favbutton(ev){
         const f = ev.target.closest('.flick')
-        f.style.background = 'red'
+        f.style.background = 'yellow'
     },
 
     handleSubmit(ev) {
