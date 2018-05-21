@@ -28,6 +28,10 @@ class App {
             ev.preventDefault()
             this.favbutton(item, flick, ev)
         })
+        item.querySelector('.edit').addEventListener('click', ev => {
+            ev.preventDefault()
+            this.toggleEditable(item, flick, ev)
+        })
         
         return item
     }
@@ -47,6 +51,32 @@ class App {
         const f = ev.target.closest('.flick')
         //f.style.background = 'yellow'
         flick.fav = item.classList.toggle('fav')
+    }
+
+    toggleEditable(item, flick, ev){
+        const nameField = item.querySelector('.flickName')
+        const btn = item.querySelector('.edit.button')
+        //const btn = ev.target
+
+        if (nameField.isContentEditable) {
+            //make it no longer editable
+            nameField.contentEditable = false
+
+            //update the button
+            btn.textContent = 'edit'
+            btn.classList.remove('success')
+
+            //save changes
+            flick.name = nameField.textContent
+        } else {
+            //make it editable
+            nameField.contentEditable = true
+            nameField.focus()
+
+            //update the button
+            btn.textContent = 'save'
+            btn.classList.add('success')
+        }
     }
 
     handleSubmit(ev) {
