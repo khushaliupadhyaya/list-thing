@@ -22,11 +22,11 @@ class App {
             .textContent = flick.name
         item.querySelector('.alert').addEventListener('click', ev => {
             ev.preventDefault()
-            this.delete(ev)
+            this.delete(item, flick, ev)
         })
         item.querySelector('.warning').addEventListener('click', ev => {
             ev.preventDefault()
-            this.favbutton(ev)
+            this.favbutton(item, flick, ev)
         })
         
         return item
@@ -34,7 +34,7 @@ class App {
 
     //does the same thing as the ev => above
     //.addEventListener('submit', this.handleSubmit.bind(this))
-    delete(ev){
+    delete(item, flick, ev){
         const t = ev.target.closest('.flick')
         //remove from the DOM
         t.remove()
@@ -43,9 +43,10 @@ class App {
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i, 1)        
     }
-    favbutton(ev){
+    favbutton(item, flick, ev){
         const f = ev.target.closest('.flick')
-        f.style.background = 'yellow'
+        //f.style.background = 'yellow'
+        flick.fav = item.classList.toggle('fav')
     }
 
     handleSubmit(ev) {

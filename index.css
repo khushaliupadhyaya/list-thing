@@ -19,3 +19,7 @@ body {
     background-image: url("https://media.gq.com/photos/5582c4f8e52bc4b477a9cdd8/master/w_800/gq-features-080109-GQfeature1v.jpg");
     background-size: cover;
 }
+
+.flick.fav {
+    background-color: yellow;
+}
