@@ -36,8 +36,12 @@ const app = {
     //.addEventListener('submit', this.handleSubmit.bind(this))
     delete(ev){
         const t = ev.target.closest('.flick')
+        //remove from the DOM
         t.remove()
-        
+
+        //remove from the array
+        const i = this.flicks.indexOf(flick)
+        this.flicks.splice(i, 1)        
     },
     favbutton(ev){
         const f = ev.target.closest('.flick')
