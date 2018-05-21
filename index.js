@@ -1,5 +1,5 @@
-const app = {
-    init(selectors) {
+class App {
+    constructor(selectors) {
         this.flicks = []
         this.max = 0
         this.list = document.querySelector(selectors.listSelector)
@@ -11,7 +11,7 @@ const app = {
                 ev.preventDefault()
                 this.handleSubmit(ev)
             })
-    },
+    }
 
     renderListItem(flick) {
         const item = this.template.cloneNode(true)
@@ -30,7 +30,7 @@ const app = {
         })
         
         return item
-    },
+    }
 
     //does the same thing as the ev => above
     //.addEventListener('submit', this.handleSubmit.bind(this))
@@ -42,11 +42,11 @@ const app = {
         //remove from the array
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i, 1)        
-    },
+    }
     favbutton(ev){
         const f = ev.target.closest('.flick')
         f.style.background = 'yellow'
-    },
+    }
 
     handleSubmit(ev) {
         const f = ev.target
@@ -63,10 +63,10 @@ const app = {
         // this.list.appendChild(item)
 
         f.reset()
-    },
+    }
 }
 
-app.init({
+const app = new App({
     formSelector: '#flickForm',
     listSelector: '#flickList',
     templateSelector: '.flick.template',
