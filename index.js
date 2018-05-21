@@ -17,17 +17,27 @@ class App {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = flick.id
-        item
-            .querySelector('.flickName')
-            .textContent = flick.name
+        item.querySelector('.flickName').textContent = flick.name
+        const nameSpan = item
+            //.querySelector('.flickName')
+            .querySelector('.flickName').addEventListener('keypress', ev => {
+                ev.preventDefault()
+                this.saveOnEnter(item, flick, ev)
+            })
+            // .textContent = flick.name
+            // nameSpan.textContent = flick.name
+        //nameSpan.addEventListener('keypress', this.saveOnEnter.bind(this))
+
         item.querySelector('.alert').addEventListener('click', ev => {
             ev.preventDefault()
             this.delete(item, flick, ev)
         })
+
         item.querySelector('.warning').addEventListener('click', ev => {
             ev.preventDefault()
             this.favbutton(item, flick, ev)
         })
+
         item.querySelector('.edit').addEventListener('click', ev => {
             ev.preventDefault()
             this.toggleEditable(item, flick, ev)
@@ -76,6 +86,12 @@ class App {
             //update the button
             btn.textContent = 'save'
             btn.classList.add('success')
+        }
+    }
+
+    saveOnEnter(item, flick, ev) {
+        if(ev.key === 'Enter') {
+            this.toggleEditable(item, flick)
         }
     }
 
