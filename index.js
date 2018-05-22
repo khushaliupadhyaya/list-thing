@@ -18,9 +18,10 @@ class App {
         item.classList.remove('template')
         item.dataset.id = flick.id
         item.querySelector('.flickName').textContent = flick.name
-        const nameSpan = item
+        //const nameSpan = item
             //.querySelector('.flickName')
-            .querySelector('.flickName').addEventListener('keypress', ev => {
+            item
+                .querySelector('.flickName').addEventListener('keypress', ev => {
                 ev.preventDefault()
                 this.saveOnEnter(item, flick, ev)
             })
@@ -80,11 +81,11 @@ class App {
         const nameField = ev.target.closest('.flick').querySelector('.flickName')
         const btn = ev.target.closest('.flick').querySelector('.edit.button')
         //const btn = ev.target
-        debugger
+        //debugger
         if (nameField.isContentEditable) {
             //make it no longer editable
-            //nameField.contentEditable = false
-            nameField.contentEditable = !nameField.isContentEditable
+            nameField.contentEditable = false
+            //nameField.contentEditable = !nameField.isContentEditable
             //update the button
             btn.textContent = 'edit'
             btn.classList.remove('success')
@@ -93,8 +94,8 @@ class App {
             flick.name = nameField.textContent
         } else {
             //make it editable
-            nameField.contentEditable = !nameField.isContentEditable
-            // nameField.contentEditable = true
+            //nameField.contentEditable = !nameField.isContentEditable
+            nameField.contentEditable = true
             nameField.focus()
 
             //update the button
@@ -105,7 +106,7 @@ class App {
 
     saveOnEnter(item, flick, ev) {
         if(ev.key === 'Enter') {
-            this.toggleEditable(item, flick)
+            this.toggleEditable(item, flick, ev)
         }
     }
 
