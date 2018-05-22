@@ -53,7 +53,12 @@ class App {
 
         item.querySelector('.moveUp').addEventListener('click', ev => {
             ev.preventDefault()
-            this.upButton(this, flick, item)
+            this.upButton(item, flick, ev)
+        })
+
+        item.querySelector('.moveDown').addEventListener('click', ev => {
+            ev.preventDefault()
+            this.downButton(item, flick, ev)
         })
 
 
@@ -113,11 +118,21 @@ class App {
     upButton(item, flick, ev) {
         //move the button upwards
         //move it up in the array as well
+        if(this.flicks.indexOf(flick) > 0) {
+            this.list.insertBefore(item, item.previousElementSibling)
+            //swapping places
+            const temp = this.flicks[i - 1]
+            this.flicks[i - 1] = flick
+            this.flicks[i] = temp
+        }
     }
 
     downButton(item, flick, ev) {
         //move the button downwards
         //move it down in the array as well
+        if(this.flicks.indexOf(flick) < this.flicks.length - 1) {
+            this.upButton(this.flicks[i + 1], item.nextElementSibling)
+        }
     }
 
     handleSubmit(ev) {
