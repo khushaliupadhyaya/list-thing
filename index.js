@@ -121,9 +121,9 @@ class App {
         if(this.flicks.indexOf(flick) > 0) {
             this.list.insertBefore(item, item.previousElementSibling)
             //swapping places
-            const temp = this.flicks[i - 1]
-            this.flicks[i - 1] = flick
-            this.flicks[i] = temp
+            const temp = this.flicks[this.flicks.indexOf(flick) - 1]
+            this.flicks[this.flicks.indexOf(flick) - 1] = flick
+            this.flicks[this.flicks.indexOf(flick)] = temp
         }
     }
 
@@ -131,7 +131,7 @@ class App {
         //move the button downwards
         //move it down in the array as well
         if(this.flicks.indexOf(flick) < this.flicks.length - 1) {
-            this.upButton(this.flicks[i + 1], item.nextElementSibling)
+            this.upButton(this.flicks[this.flicks.indexOf(flick) + 1], item.nextElementSibling)
         }
     }
 
