@@ -38,11 +38,24 @@ class App {
             this.favbutton(item, flick, ev)
         })
 
+        // item.querySelector('.edit').addEventListener('click', this.toggleEditable.bind( this, flick))
         item.querySelector('.edit').addEventListener('click', ev => {
+            //this.toggleEditable.bind( this, flick)
             ev.preventDefault()
-            this.toggleEditable(item, flick, ev)
+            this.toggleEditable(this, flick, ev)
+
+
+
+            //this might be causing problems!!
+
         })
-        
+
+        item.querySelector('.moveUp').addEventListener('click', ev => {
+            ev.preventDefault()
+            this.upButton(this, flick, item)
+        })
+
+
         return item
     }
 
@@ -64,14 +77,14 @@ class App {
     }
 
     toggleEditable(item, flick, ev){
-        const nameField = item.querySelector('.flickName')
-        const btn = item.querySelector('.edit.button')
+        const nameField = ev.target.closest('.flick').querySelector('.flickName')
+        const btn = ev.target.closest('.flick').querySelector('.edit.button')
         //const btn = ev.target
-
+        debugger
         if (nameField.isContentEditable) {
             //make it no longer editable
-            nameField.contentEditable = false
-
+            //nameField.contentEditable = false
+            nameField.contentEditable = !nameField.isContentEditable
             //update the button
             btn.textContent = 'edit'
             btn.classList.remove('success')
@@ -80,7 +93,8 @@ class App {
             flick.name = nameField.textContent
         } else {
             //make it editable
-            nameField.contentEditable = true
+            nameField.contentEditable = !nameField.isContentEditable
+            // nameField.contentEditable = true
             nameField.focus()
 
             //update the button
@@ -93,6 +107,16 @@ class App {
         if(ev.key === 'Enter') {
             this.toggleEditable(item, flick)
         }
+    }
+
+    upButton(item, flick, ev) {
+        //move the button upwards
+        //move it up in the array as well
+    }
+
+    downButton(item, flick, ev) {
+        //move the button downwards
+        //move it down in the array as well
     }
 
     handleSubmit(ev) {
